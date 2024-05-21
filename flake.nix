@@ -4,11 +4,11 @@
   outputs = { self }: {
     templates = {
       blank = {
-        path = ./blank;
+        path = ./blank-shell;
         description = "flake with empy devshell";
       };
     };
 
-    defaultTemplate = self.templates.blank;
+    default = self.templates.blank;
   };
 }
