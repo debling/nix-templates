@@ -15,8 +15,13 @@
         "x86_64-linux"
       ];
 
-      forEachSystem = fn: nixpkgs.lib.genAttrs systems (system: fn
-        nixpkgs.legacyPackages.${system});
+      forEachSystem = fn: nixpkgs.lib.genAttrs systems (system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+          };
+        in
+        fn pkgs);
     in
     {
       devShell = forEachSystem (pkgs:
